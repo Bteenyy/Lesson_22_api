@@ -11,11 +11,10 @@ import static io.restassured.http.ContentType.JSON;
 
 public class AddBookSpec {
         public static RequestSpecification addBookRequestSpec = with()
-                .filter(withCustomTemplates())
                 .log().uri()
                 .log().method()
                 .contentType(JSON);
-        public static ResponseSpecification addBookResponseSpec = new ResponseSpecBuilder()
+                public static ResponseSpecification addBookResponseSpec = new ResponseSpecBuilder()
                 .log(LogDetail.STATUS)
                 .log(LogDetail.BODY)
                 .expectStatusCode(201)

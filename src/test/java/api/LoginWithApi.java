@@ -9,7 +9,7 @@ import static spec.SuccessfulRegisterSpec.successfulRequestSpec;
 import static spec.SuccessfulRegisterSpec.successfulResponseSpec;
 
 public class LoginWithApi extends TestBase {
-    public Response Login() {
+    public Response getAuth() {
         SuccessfulRegisterBodyModel successfulRegisterBodyModel = new SuccessfulRegisterBodyModel();
         successfulRegisterBodyModel.setUserName("Bteeny");
         successfulRegisterBodyModel.setPassword("Test(111)^");

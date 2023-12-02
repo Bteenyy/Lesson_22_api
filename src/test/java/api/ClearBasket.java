@@ -1,17 +1,17 @@
 package api;
 
+import io.restassured.response.Response;
+
 import static io.restassured.RestAssured.given;
-import static spec.ClearBasketSpec.clearBasketRequestSpec;
 import static spec.ClearBasketSpec.clearBasketResponseSpec;
 import static spec.SuccessfulRegisterSpec.successfulRequestSpec;
 
 public class ClearBasket {
-    public void ClearBas(String userID, String token) {
+    public void ClearBas(Response auth) {
         given(successfulRequestSpec)
-                .body(clearBasketRequestSpec)
-                .header("Authorization", "Bearer " + token)
+                .header("Authorization", "Bearer " + auth.path("token"))
                 .when()
-                .delete("BookStore/v1/Books?UserId=" + userID)
+                .delete("BookStore/v1/Books?UserId=" + auth.path("userId"))
                 .then()
                 .spec(clearBasketResponseSpec)
                 .extract();

@@ -1,13 +1,29 @@
 package api;
 
-import static helpers.CustomAllureListener.withCustomTemplates;
+
+import io.restassured.response.Response;
+import models.AddBookBodyModel;
+
 import static io.restassured.RestAssured.given;
-import static io.restassured.http.ContentType.JSON;
-import static spec.SuccessfulRegisterSpec.successfulRequestSpec;
+import static spec.AddBookSpec.addBookRequestSpec;
+import static spec.AddBookSpec.addBookResponseSpec;
 
 public class ActionWithBook {
-    public void AddBook()
-    {
+    public void addBook(Response authResponse, String isbn){
 
+        AddBookBodyModel addBookModel = new AddBookBodyModel();
+        AddBookBodyModel.Collection collectionInfo = new AddBookBodyModel.Collection();
+        collectionInfo.setIsbn(isbn);
+        addBookModel.getIsbnInfo().add(collectionInfo);
+        addBookModel.setId(authResponse.path("userId"));
+
+        given(addBookRequestSpec)
+                .header("Authorization", "Bearer " + authResponse.path("token"))
+                .body(addBookModel)
+                .when()
+                .post("/BookStore/v1/Books")
+                .then()
+                .spec(addBookResponseSpec)
+                .statusCode(201);
     }
 }
