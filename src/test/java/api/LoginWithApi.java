@@ -1,31 +1,25 @@
 package api;
 
-import models.AddBookBodyModel;
-import models.AddBookResponceModel;
+import io.restassured.response.Response;
 import models.SuccessfulRegisterBodyModel;
-import models.SuccessfulRegisterResponseModel;
-import org.junit.jupiter.api.Test;
 import tests.TestBase;
 
 import static io.restassured.RestAssured.given;
-import static spec.AddBookSpec.addBookRequestSpec;
-import static spec.AddBookSpec.addBookResponseSpec;
 import static spec.SuccessfulRegisterSpec.successfulRequestSpec;
 import static spec.SuccessfulRegisterSpec.successfulResponseSpec;
 
 public class LoginWithApi extends TestBase {
-    @Test
-    void addBooks() {
-        AddBookBodyModel addBook = new AddBookBodyModel();
-        // addBook.setId();
-        addBook.getCollectionOfIsbns().setIsbn("9781449325862");
-        AddBookResponceModel responseBook = given(addBookRequestSpec)
-                .body(addBook)
+    public Response Login() {
+        SuccessfulRegisterBodyModel successfulRegisterBodyModel = new SuccessfulRegisterBodyModel();
+        successfulRegisterBodyModel.setUserName("Bteeny");
+        successfulRegisterBodyModel.setPassword("Test(111)^");
+        return given(successfulRequestSpec)
+                .body(successfulRegisterBodyModel)
                 .when()
-                .post("BookStore/v1/Books")
+                .post("/Account/v1/Login")
                 .then()
-                .spec(addBookResponseSpec)
-                .extract().as(AddBookResponceModel.class);
+                .spec(successfulResponseSpec)
+                .extract().response();
     }
 
 }
