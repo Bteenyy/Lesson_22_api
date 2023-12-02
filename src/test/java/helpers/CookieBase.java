@@ -1,5 +1,6 @@
 package helpers;
 
+import api.ClearBasket;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.Cookie;
@@ -14,6 +15,8 @@ public class CookieBase implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
         LoginWithApi loginWithApi = new LoginWithApi();
         Response cookie = loginWithApi.Login();
+        ClearBasket clearBasket = new ClearBasket();
+        clearBasket.ClearBas(cookie.path("userId"), cookie.path("token"));
         open("/images/gplaypattern.jpg");
         getWebDriver().manage().addCookie(new Cookie("userID", cookie.path("userId")));
         getWebDriver().manage().addCookie(new Cookie("expires", cookie.path("expires")));
