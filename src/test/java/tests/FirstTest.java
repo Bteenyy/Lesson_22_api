@@ -1,7 +1,6 @@
 package tests;
 
 import api.ActionWithBook;
-import api.ClearBasket;
 import api.LoginWithApi;
 import com.codeborne.selenide.Condition;
 import helpers.WithLogin;
@@ -18,7 +17,10 @@ public class FirstTest extends TestBase {
     @Test
     @WithLogin
     void successfulRegisterTest() {
-
+        ActionWithBook clearBasket = new ActionWithBook();
+        clearBasket.deleteAllBook(authResponse);
+        clearBasket.addBook(authResponse, "9781449325862");
+        clearBasket.deleteBook(authResponse, "9781449325862");
         open("/profile");
         $("#userName-value").shouldHave(Condition.text("Bteeny"));
     }
