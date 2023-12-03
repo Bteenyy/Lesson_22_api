@@ -1,13 +1,15 @@
 package api;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.SuccessfulRegisterBodyModel;
-import tests.TestBase;
 
 import static io.restassured.RestAssured.given;
 import static spec.RegAndResSpec.*;
 
-public class LoginWithApi extends TestBase {
+
+public class LoginWithApi {
+    @Step("Authorization")
     public Response getAuth() {
         SuccessfulRegisterBodyModel successfulRegisterBodyModel = new SuccessfulRegisterBodyModel();
         successfulRegisterBodyModel.setUserName("Bteeny");

@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import page.ProfilePage;
 
+import static io.qameta.allure.Allure.step;
+
 public class DemoqaApiUiTest extends TestBase {
     LoginWithApi auth = new LoginWithApi();
     Response authResponse = auth.getAuth();
@@ -19,7 +21,10 @@ public class DemoqaApiUiTest extends TestBase {
         clearBasket.addBook(authResponse, "9781449325862");
         clearBasket.deleteBook(authResponse, "9781449325862");
         ProfilePage profilePage = new ProfilePage();
-        profilePage.profilePageOpen()
-                .weDoIt();
+        step("Check delete book", () -> {
+            profilePage.profilePageOpen()
+                    .weDoIt();
+        });
+
     }
 }

@@ -1,5 +1,6 @@
 package api;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import models.AddBookBodyModel;
 import models.DeleteBookBodyModel;
@@ -9,6 +10,7 @@ import static spec.RegAndResSpec.requestSpec;
 import static spec.RegAndResSpec.responseSpec;
 
 public class ActionWithBook {
+    @Step("DeleteAllBook")
     public static void deleteAllBook(Response auth) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + auth.path("token"))
@@ -19,7 +21,7 @@ public class ActionWithBook {
                 .statusCode(204)
                 .extract();
     }
-
+    @Step("AddBook")
     public static void addBook(Response authResponse, String isbn) {
         AddBookBodyModel addBookModel = new AddBookBodyModel();
         AddBookBodyModel.CollectionInfo collectionInfo = new AddBookBodyModel.CollectionInfo();
@@ -35,7 +37,7 @@ public class ActionWithBook {
                 .spec(responseSpec)
                 .statusCode(201);
     }
-
+    @Step("DeleteBook")
     public static void deleteBook(Response authResponse, String isbn) {
         DeleteBookBodyModel deleteBookBodyModel = new DeleteBookBodyModel();
         deleteBookBodyModel.setIsbn(isbn);
