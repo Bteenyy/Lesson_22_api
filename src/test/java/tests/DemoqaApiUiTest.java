@@ -7,7 +7,7 @@ import io.restassured.response.Response;
 import org.junit.jupiter.api.Test;
 import page.ProfilePage;
 
-public class FirstTest extends TestBase {
+public class DemoqaApiUiTest extends TestBase {
     LoginWithApi auth = new LoginWithApi();
     Response authResponse = auth.getAuth();
 

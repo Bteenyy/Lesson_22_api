@@ -14,7 +14,7 @@ public class CookieBase implements BeforeEachCallback {
     public void beforeEach(ExtensionContext context) {
         LoginWithApi loginWithApi = new LoginWithApi();
         Response cookie = loginWithApi.getAuth();
-        open("/images/gplaypattern.jpg");
+        open("/images/Toolsqa.jpg");
         getWebDriver().manage().addCookie(new Cookie("userID", cookie.path("userId")));
         getWebDriver().manage().addCookie(new Cookie("expires", cookie.path("expires")));
         getWebDriver().manage().addCookie(new Cookie("token", cookie.path("token")));
