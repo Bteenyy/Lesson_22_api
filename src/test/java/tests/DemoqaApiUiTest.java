@@ -17,7 +17,7 @@ public class DemoqaApiUiTest extends TestBase {
     @WithLogin
     void successfulRegisterTest() {
         ActionWithBook actionWithBook = new ActionWithBook();
-        actionWithBook.deleteAllBook(authResponse);
+        actionWithBook.deleteAllBooks(authResponse);
         actionWithBook.addBook(authResponse, "9781449325862");
         actionWithBook.deleteBook(authResponse, "9781449325862");
         ProfilePage profilePage = new ProfilePage();

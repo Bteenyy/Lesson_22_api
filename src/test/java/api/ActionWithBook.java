@@ -11,7 +11,7 @@ import static spec.RegAndResSpec.responseSpec;
 
 public class ActionWithBook {
     @Step("DeleteAllBook")
-    public static void deleteAllBook(Response auth) {
+    public static void deleteAllBooks(Response auth) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + auth.path("token"))
                 .when()
