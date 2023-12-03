@@ -16,10 +16,10 @@ public class DemoqaApiUiTest extends TestBase {
     @Test
     @WithLogin
     void successfulRegisterTest() {
-        ActionWithBook clearBasket = new ActionWithBook();
-        clearBasket.deleteAllBook(authResponse);
-        clearBasket.addBook(authResponse, "9781449325862");
-        clearBasket.deleteBook(authResponse, "9781449325862");
+        ActionWithBook actionWithBook = new ActionWithBook();
+        actionWithBook.deleteAllBook(authResponse);
+        actionWithBook.addBook(authResponse, "9781449325862");
+        actionWithBook.deleteBook(authResponse, "9781449325862");
         ProfilePage profilePage = new ProfilePage();
         step("Check delete book", () -> {
             profilePage.profilePageOpen()
