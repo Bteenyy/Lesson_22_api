@@ -23,7 +23,7 @@ public class DemoqaApiUiTest extends TestBase {
         actionWithBook.deleteBook(authResponse, "9781449325862");
         step("Check delete book", () -> {
             profilePage.profilePageOpen()
-                    .checkExist();
+                    .checkDeletedBook();
         });
 
     }
